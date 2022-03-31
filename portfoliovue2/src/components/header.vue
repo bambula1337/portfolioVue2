@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "Header",
+  name: "HeaderComponent",
 };
 </script>
 
@@ -33,7 +33,7 @@ export default {
   @apply flex justify-around bg-no-repeat overflow-hidden h-72;
   & .logoWrapper {
     & .logo {
-      @apply text-5xl relative -left-24 top-2 text-white;
+      @apply text-5xl relative -left-10 top-2 text-white;
       font-family: "Train One";
     }
   }
