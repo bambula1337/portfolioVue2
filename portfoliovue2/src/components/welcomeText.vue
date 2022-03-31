@@ -22,7 +22,8 @@ export default {
   font-family: 'Train One';
   & .top{
     & .maintext{
-      @apply text-7xl;
+      @apply text-5xl;
+      @apply smlger:text-7xl;
     }
   }
   & .bot{

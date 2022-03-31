@@ -60,8 +60,8 @@ export default {
     border: 1px black solid;
   }
   & .right {
-    @apply flex self-center mt-100 ml-0 mb-5 justify-center;
-    @apply smlger:ml-5;
+    @apply flex self-center mt-72 ml-0 mb-5 justify-center;
+    @apply smlger:ml-5 smlger:mt-100;
     @apply lg:ml-0 lg:mt-0 lg:mb-0;
     & .infoText {
       width: 75%;
