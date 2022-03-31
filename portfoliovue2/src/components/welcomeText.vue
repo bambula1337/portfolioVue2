@@ -22,7 +22,7 @@ export default {
   font-family: 'Train One';
   & .top{
     & .maintext{
-      @apply text-5xl;
+      @apply text-5xl text-center mb-2;
       @apply smlger:text-7xl;
     }
   }

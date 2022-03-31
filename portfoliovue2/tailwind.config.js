@@ -154,6 +154,7 @@ module.exports = {
       none: '0px',
       'info-section-bg': '4rem, 13rem',
       full: '100%',
+      '9.5rem': '9.5rem',
     },
     blur: {
       0: '0',
