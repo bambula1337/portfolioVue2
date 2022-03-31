@@ -146,6 +146,7 @@ module.exports = {
       'right-top': 'right top',
       top: 'top',
       homebgsm: '34.5% 0%',
+      headerbg: '70% 80%',
     },
     backgroundSize: {
       auto: 'auto',
@@ -156,6 +157,10 @@ module.exports = {
       full: '100%',
       '9.5rem': '9.5rem',
       '100rem': '100rem',
+      '120rem': '120rem',
+      '70rem': '70rem',
+      '80rem': '80rem',
+      '90rem': '90rem',
     },
     blur: {
       0: '0',

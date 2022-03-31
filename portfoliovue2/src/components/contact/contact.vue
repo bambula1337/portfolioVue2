@@ -117,7 +117,7 @@ export default {
       @apply flex pt-3 items-center justify-between flex-col;
       @apply lg:flex-row;
       & p {
-        @apply text-gray-400 text-lg;
+        @apply text-gray-400 text-lg text-center;
         @apply smplus:text-lg;
         @apply lg:text-xs;
         font-family: "Comfortaa";
