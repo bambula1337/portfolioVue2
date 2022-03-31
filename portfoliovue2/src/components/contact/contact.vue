@@ -21,7 +21,7 @@
       </div>
       <div class="btnwrapper">
         <p>I will write you back usually in 3 days</p>
-        <button type="submit"><p>Subscribe</p></button>
+        <button type="submit"><p>Send</p></button>
       </div>
     </div>
   </div>
@@ -127,23 +127,22 @@ export default {
         @apply lg:h-11 lg:w-36 lg:text-base lg:mt-0;
 
         & p {
-          @apply flex flex-col items-center text-blue-50 -mb-0.5;
+          @apply flex flex-col items-center text-blue-50 -mb-1;
 
           &::after {
             content: " ";
             @apply flex w-0 h-0 bg-gray-400 transition-all duration-700;
-            border: 0px rgba(156, 163, 175, var(--tw-bg-opacity)) solid;
+            border-top: 0.5px rgba(156, 163, 175, var(--tw-bg-opacity)) solid;
             font-family: "Comfortaa";
           }
         }
         &:hover {
           p {
-            @apply -mb-0.5;
             &::after {
               content: " ";
               @apply flex;
-              width: 50%;
-              border: 0.5px rgba(156, 163, 175, var(--tw-bg-opacity)) solid;
+              width: 25%;
+              border-top: 0.5px rgba(156, 163, 175, var(--tw-bg-opacity)) solid;
             }
           }
         }
