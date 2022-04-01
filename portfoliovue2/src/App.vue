@@ -4,7 +4,7 @@
     <div class="main">
       <router-view />
     </div>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -23,7 +23,33 @@ export default {
 
 
 <style lang="scss">
+// Tailwind Connection
 @import "./assets/styles/tailwind.scss";
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Train+One&family=Ubuntu&family=Zen+Tokyo+Zoo&display=swap');
+// Fonts Connection
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Train+One&family=Ubuntu&family=Zen+Tokyo+Zoo&display=swap");
 
+// Scroll Style
+::-webkit-scrollbar {
+  width: 0.6vw;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(176, 176, 176);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(129, 129, 129);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(110, 110, 110);
+}
+//
+
+//For Correct peview header with footer
+
+.main {
+  @apply min-h-screen;
+}
 </style>

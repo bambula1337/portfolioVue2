@@ -1,5 +1,5 @@
 <template>
-  <div class="infoMain">
+  <div class="infoMain" id="about">
     <WelcomeText :main="WelcomeTextProps.main" :sub="WelcomeTextProps.sub"/>
     <Info/>
   </div>

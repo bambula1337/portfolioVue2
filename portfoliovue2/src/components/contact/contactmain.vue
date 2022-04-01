@@ -1,5 +1,5 @@
 <template>
-  <div class="contactmain">
+  <div class="contactmain" id="contact">
     <WelcomeText :main="WelcomeTextProps.main" :sub="WelcomeTextProps.sub"/>
     <ContactComponent/>
   </div>

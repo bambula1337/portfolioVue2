@@ -6,15 +6,9 @@
       >
     </div>
     <div class="links">
-      <router-link to="/contact" class="link" :active-class="'active'"
-        >about me</router-link
-      >
-      <router-link to="/contact" class="link" :active-class="'active'"
-        >projects</router-link
-      >
-      <router-link to="/contact" class="link" :active-class="'active'"
-        >contact</router-link
-      >
+      <a href="#about" v-smooth-scroll class="link">about me</a>
+      <a href="#projects" v-smooth-scroll class="link">projects</a>
+      <a href="#contact" v-smooth-scroll class="link">contact</a>
     </div>
     <div class="mobilemenu">
       <div class="opener">
@@ -25,16 +19,10 @@
           ]"
         ></span>
       </div>
-      <div :class="[isMobileMenuOpened ? 'menuOpened' : 'menu']">
-        <router-link to="/contact" class="link" :active-class="'active'"
-          >about me</router-link
-        >
-        <router-link to="/contact" class="link" :active-class="'active'"
-          >projects</router-link
-        >
-        <router-link to="/contact" class="link" :active-class="'active'"
-          >contact</router-link
-        >
+      <div :class="[isMobileMenuOpened ? 'menuOpened' : 'menu']" @click="scrollerClicked">
+        <a href="#about" v-smooth-scroll class="link">about me</a>
+        <a href="#projects" v-smooth-scroll class="link">projects</a>
+        <a href="#contact" v-smooth-scroll class="link">contact</a>
       </div>
     </div>
   </div>
@@ -43,6 +31,13 @@
 <script>
 export default {
   name: "HeaderComponent",
+  methods: {
+    scrollerClicked: function(event){
+      if(event.target.className == "link"){
+        this.isMobileMenuOpened = false;
+      }
+    }
+  },
   data() {
     return {
       isMobileMenuOpened: false,
@@ -75,10 +70,20 @@ export default {
     @apply lg:mx-0;
     & .link {
       font-size: 2.5rem;
-      @apply mx-14 w-36 text-white mt-2.5 h-10;
+      @apply mx-14 w-36 text-white mt-2.5 h-10 flex items-center flex-col;
       @apply lg:text-5xl lg:w-44 lg:mx-7;
       @apply lgplus:mx-14;
       font-family: "Zen Tokyo Zoo";
+
+      &::after{
+        @apply w-0 transition-all duration-1000;
+        content: '';
+        border-top: 2px white solid;
+      }
+
+      &:hover::after{
+        width: 90%;
+      }
     }
   }
   & .mobilemenu {
