@@ -1,7 +1,7 @@
 <template>
   <transition :name="effect">
     <div class="sliderItem" v-show="currentSlideID === index">
-      <img :src="slideImgSrc" alt="" />
+      <img class="bgImg" :src="urlFixer(slideImgSrc)" alt="" />
     </div>
   </transition>
 </template>
@@ -10,6 +10,11 @@
 export default {
   name: "SliderItemComponent",
   props: ["slideImgSrc", "currentSlideID", "index", "effect"],
+  methods: {
+    urlFixer: function(url){
+      return require(`@/assets${url}`);
+    }
+  }
 };
 </script>
 

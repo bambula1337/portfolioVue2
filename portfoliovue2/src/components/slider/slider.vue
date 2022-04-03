@@ -20,6 +20,7 @@
           ></p>
         </div>
       </div>
+      <a href="https://github.com/bambula1337/CopyProIdea" class="github"><img src="@/assets/img/slider/github_icon.png" alt=""></a>
     </div>
     <SliderController
       @prev="prev"
@@ -80,11 +81,10 @@ export default {
   data() {
     return {
       slides: [
-        "@/assets/img/slider/skybox/skybox_1.png",
-        "https://picsum.photos/id/232/1920/1080",
-        "https://picsum.photos/id/233/1920/1080",
-        "https://picsum.photos/id/234/1920/1080",
-        "https://picsum.photos/id/235/1920/1080",
+        "/img/slider/skybox/SkyboxSlider_1.png",
+        "/img/slider/skybox/SkyboxSlider_2.png",
+        "/img/slider/skybox/SkyboxSlider_3.png",
+        "/img/slider/skybox/SkyboxSlider_4.png",
       ],
       currentSlideID: 0,
       effect: "",
@@ -100,10 +100,8 @@ export default {
   @apply flex justify-evenly -ml-10;
 
   & .slider-wrapper {
-    @apply relative overflow-hidden flex items-end justify-center;
+    @apply relative overflow-hidden flex items-end justify-center h-144 w-300;
     border-radius: 100px;
-    width: 1200px;
-    height: 500px;
 
     & .project-name {
       @apply text-5xl text-purple-700 z-40;
@@ -136,6 +134,11 @@ export default {
     @apply text-5xl mb-2;
     font-family: 'Train One';
     color: #AE5FFF;
+  }
+
+  & .github{
+    @apply flex self-start w-40 -mt-4;
+    filter: invert(95%) sepia(0%) saturate(58%) hue-rotate(4deg) brightness(120%) contrast(100%);
   }
 }
 </style>

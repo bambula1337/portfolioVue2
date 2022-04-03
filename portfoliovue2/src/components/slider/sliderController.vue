@@ -1,7 +1,7 @@
 <template>
   <div class="slider-controller">
     <div class="text">
-      <p>{{currentslidenumber}} / {{totalslides}}</p>
+      <p>{{ currentslidenumber }} / {{ totalslides }}</p>
     </div>
     <div class="buttons">
       <div class="prev" @click="$emit('prev')">
@@ -18,7 +18,7 @@
 export default {
   name: "SliderControllerComponent",
   emits: ["prev", "next"],
-  props: ['currentslidenumber', 'totalslides'],
+  props: ["currentslidenumber", "totalslides"],
 };
 </script>
 
@@ -28,7 +28,7 @@ export default {
   font-family: "Train One";
 
   & .buttons {
-    @apply flex -mt-36;
+    @apply flex -mt-36 text-white;
 
     user-select: none; /* supported by Chrome and Opera */
     -webkit-user-select: none; /* Safari */
@@ -37,11 +37,15 @@ export default {
     -ms-user-select: none; /* Internet Explorer/Edge */
 
     & .prev {
-      @apply cursor-pointer;
+      @apply cursor-pointer transition-all duration-700;
+
+      
     }
 
     & .next {
-      @apply ml-14 cursor-pointer;
+      @apply ml-14 cursor-pointer transition-all duration-700;
+
+      
     }
   }
 }
