@@ -1,5 +1,5 @@
 <template>
-  <div class="sliderMain">
+  <div class="sliderMain" id="projects">
     <div class="WelcomeText-wrapper">
       <WelcomeText :main="WelcomeText.main" :sub="WelcomeText.sub" />
     </div>
