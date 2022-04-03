@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <InfoMain/>
-    <ContactMain/>
     <SliderMain/>
+    <ContactMain/>
   </div>
 </template>
 

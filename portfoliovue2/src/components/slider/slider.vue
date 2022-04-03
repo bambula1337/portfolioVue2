@@ -1,5 +1,5 @@
 <template>
-  <div class="slider">
+  <div class="slider" id="projects">
     <div class="slider_and_name">
       <p class="project-name">{{ ProjectName }}</p>
       <div class="slider-wrapper">
@@ -20,7 +20,12 @@
           ></p>
         </div>
       </div>
-      <a href="https://github.com/bambula1337/CopyProIdea" class="github"><img src="@/assets/img/slider/github_icon.png" alt=""></a>
+      <a
+        @click.prevent=""
+        href="https://github.com/bambula1337/CopyProIdea"
+        class="github"
+        ><img src="@/assets/img/slider/github_icon.png" alt=""
+      /></a>
     </div>
     <SliderController
       @prev="prev"
@@ -97,10 +102,14 @@ export default {
 
 <style lang="scss" scoped>
 .slider {
-  @apply flex justify-evenly -ml-10;
+  @apply flex justify-evenly flex-col;
+  @apply lg:flex-row;
 
   & .slider-wrapper {
-    @apply relative overflow-hidden flex items-end justify-center h-144 w-300;
+    @apply relative overflow-hidden flex items-end justify-center w-80 h-40;
+    @apply smlger:w-108 smlger:h-56;
+    @apply smplus:w-144 smplus:h-72;
+    @apply xl:w-300 xl:h-144;
     border-radius: 100px;
 
     & .project-name {
@@ -127,18 +136,23 @@ export default {
   }
 }
 
-.slider_and_name{
+.slider_and_name {
   @apply flex flex-col items-center;
 
-  & .project-name{
+  & .project-name {
     @apply text-5xl mb-2;
-    font-family: 'Train One';
-    color: #AE5FFF;
+    font-family: "Train One";
+    color: #ae5fff;
   }
 
-  & .github{
-    @apply flex self-start w-40 -mt-4;
-    filter: invert(95%) sepia(0%) saturate(58%) hue-rotate(4deg) brightness(120%) contrast(100%);
+  & .github {
+    @apply flex self-center w-32;
+    @apply md:mt-5;
+    @media (min-width: 1024px) {
+       
+     filter: invert(95%) sepia(0%) saturate(58%) hue-rotate(4deg) brightness(120%) contrast(100%);
+      
+    }
   }
 }
 </style>

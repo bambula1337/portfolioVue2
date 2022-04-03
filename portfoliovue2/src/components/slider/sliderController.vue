@@ -24,11 +24,17 @@ export default {
 
 <style lang="scss" scoped>
 .slider-controller {
-  @apply text-5xl flex flex-col justify-around items-center -mb-20;
+  @apply text-6xl flex flex-col justify-around items-center -mb-20;
   font-family: "Train One";
 
+  & .text{
+    @apply hidden text-5xl -mb-20;
+    @apply lg:flex;
+  }
+
   & .buttons {
-    @apply flex -mt-36 text-white;
+    @apply flex mb-22;
+    @apply lg:text-white;
 
     user-select: none; /* supported by Chrome and Opera */
     -webkit-user-select: none; /* Safari */

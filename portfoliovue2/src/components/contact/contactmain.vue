@@ -28,8 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .contactmain{
-  @apply mt-88;
-  @apply smlger:mt-108;
-  @apply lg:mt-52;
+  @apply mt-48 -mb-52;
+  @apply lg:mt-36 lg:-mb-10;
 }
 </style>

@@ -35,17 +35,31 @@ export default {
 
 <style lang="scss" scoped>
 .sliderMain {
-  background-image: url("../../assets/img/projects/bgmade.png");
-  background-repeat: no-repeat;
-  background-position: 10% 200%;
+  @apply mt-88;
+  @apply smlger:mt-108;
+  @apply lg:mt-32;
+  @media (min-width: 1024px) {
+    background-image: url("../../assets/img/projects/bgmade1.png");
+    background-repeat: no-repeat;
+    background-position: 10% 200%;
+    background-size: 80rem;
+  }
+
+  @media (min-width: 1440px) {
+    background-image: url("../../assets/img/projects/bgmade1.png");
+    background-repeat: no-repeat;
+    background-position: 10% 150%;
+    background-size: 120rem;
+  }
+
   & .WelcomeText-wrapper {
-    @apply mb-20;
+    @apply mb-10;
   }
 
   & .view-all {
-    @apply flex justify-center mt-3;
+    @apply flex justify-center text-3xl mt-5 text-center;
+    @apply lg:mt-16;
     font-family: "Train One";
-    font-size: 2.5rem;
   }
 }
 </style>
