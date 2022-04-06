@@ -18,6 +18,8 @@ export default {
   background-size: 60rem;
   @apply bg-no-repeat h-88 flex flex-col items-center justify-end;
   @apply lg:bg-100rem;
+  @apply xl:bg-120rem xl:h-98;
+
   .line {
     @apply rounded-full h-0 mb-3;
     width: 70%;

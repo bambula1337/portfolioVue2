@@ -1,5 +1,5 @@
 <template>
-  <div class="slider" id="projects">
+  <div class="slider">
     <div class="slider_and_name">
       <p class="project-name">{{ ProjectName }}</p>
       <div class="slider-wrapper">
@@ -21,7 +21,6 @@
         </div>
       </div>
       <a
-        @click.prevent=""
         href="https://github.com/bambula1337/CopyProIdea"
         class="github"
         ><img src="@/assets/img/slider/github_icon.png" alt=""
