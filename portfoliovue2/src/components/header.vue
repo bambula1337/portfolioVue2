@@ -13,13 +13,13 @@
     <div class="mobilemenu">
       <div class="opener">
         <input type="checkbox" class="checker" v-model="isMobileMenuOpened" />
-        <span class="openerContent"
-          :class="{
-            'openerContentOpened': isMobileMenuOpened,
-          }"
+        <span
+          :class="[
+            isMobileMenuOpened ? 'openerContentOpened' : 'openerContent',
+          ]"
         ></span>
       </div>
-      <div class="menu" :class="{'menuOpened': isMobileMenuOpened}" @click="scrollerClicked">
+      <div :class="[isMobileMenuOpened ? 'menuOpened' : 'menu']" @click="scrollerClicked">
         <a href="#about" v-smooth-scroll class="link">about me</a>
         <a href="#projects" v-smooth-scroll class="link">projects</a>
         <a href="#contact" v-smooth-scroll class="link">contact</a>
@@ -134,18 +134,41 @@ export default {
 }
 
 .menuOpened {
-   margin-top: 8rem !important;
+  @apply z-0 text-black flex flex-col w-screen items-center h-40 justify-center mt-32 text-5xl  transition-all duration-1000;
+  @apply md:hidden;
+  font-family: "Zen Tokyo Zoo";
 }
 
 .openerContentOpened {
-  width: 0rem !important;
+  @apply rounded-full -ml-5;
+  content: "";
+  position: absolute;
+  top: calc(10% - 1px);
+  left: 50%;
+  width: 0rem;
+  border-bottom: 4px solid rgb(255, 255, 255);
+  transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &::after,
+  &::before {
+    @apply rounded-full;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 2.5rem;
+    border-bottom: 4px solid rgb(255, 255, 255);
+    transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
 
   &::after {
-    transform: rotate(45deg) !important;
+    transform: translateY(-12px);
+    transform: rotate(45deg);
   }
 
   &::before {
-    transform: rotate(-45deg) !important;
+    transform: translateY(12px);
+    transform: rotate(-45deg);
   }
 }
 </style>

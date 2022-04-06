@@ -41,7 +41,7 @@ export default {
   @apply lg:bg-info-section-bg lg:flex-row;
   & .left {
     @apply flex self-center;
-    @apply smlger:ml-0;
+    @apply smlger:ml-2;
     @apply lg:m-0;
     & .leftImage {
       @apply rounded-3xl;
