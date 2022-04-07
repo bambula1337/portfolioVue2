@@ -1,11 +1,14 @@
 <template>
-  <div class="header">
+  <div class="header" :class="{ isProject: $route.name == 'Projects' }">
     <div class="logoWrapper">
-      <router-link to="/" class="logo" :active-class="'active'"
+      <router-link
+        to="/"
+        class="logo"
+        :active-class="'active'"
         >adm’s</router-link
       >
     </div>
-    <div class="links">
+    <div class="links" v-if="$route.name != 'Projects'">
       <a href="#about" v-smooth-scroll class="link">about me</a>
       <a href="#projects" v-smooth-scroll class="link">projects</a>
       <a href="#contact" v-smooth-scroll class="link">contact</a>
@@ -19,10 +22,14 @@
           ]"
         ></span>
       </div>
-      <div :class="[isMobileMenuOpened ? 'menuOpened' : 'menu']" @click="scrollerClicked">
-        <a href="#about" v-smooth-scroll class="link">about me</a>
-        <a href="#projects" v-smooth-scroll class="link">projects</a>
-        <a href="#contact" v-smooth-scroll class="link">contact</a>
+      <div
+        :class="[isMobileMenuOpened ? 'menuOpened' : 'menu']"
+        @click="scrollerClicked"
+      >
+        <a href="#about" v-smooth-scroll class="link" v-if="$route.name != 'Projects'">about me</a>
+        <a href="#projects" v-smooth-scroll class="link" v-if="$route.name != 'Projects'">projects</a>
+        <a href="#contact" v-smooth-scroll class="link" v-if="$route.name != 'Projects'">contact</a>
+        <router-link to="/" v-else><p class="link" @click="scrollerClicked">main page</p></router-link>
       </div>
     </div>
   </div>
@@ -32,11 +39,11 @@
 export default {
   name: "HeaderComponent",
   methods: {
-    scrollerClicked: function(event){
-      if(event.target.className == "link"){
+    scrollerClicked: function (event) {
+      if (event.target.className == "link") {
         this.isMobileMenuOpened = false;
       }
-    }
+    },
   },
   data() {
     return {
@@ -75,13 +82,13 @@ export default {
       @apply lgplus:mx-14;
       font-family: "Zen Tokyo Zoo";
 
-      &::after{
+      &::after {
         @apply w-0 transition-all duration-1000;
-        content: '';
+        content: "";
         border-top: 2px white solid;
       }
 
-      &:hover::after{
+      &:hover::after {
         width: 90%;
       }
     }
@@ -169,6 +176,32 @@ export default {
   &::before {
     transform: translateY(12px);
     transform: rotate(-45deg);
+  }
+}
+
+//For Projects Page
+
+.isProject {
+  @apply justify-center;
+
+  & .logoWrapper{
+    @apply ml-0;
+    @apply md:block;
+
+    & .logo{
+      @apply flex flex-col items-center;
+
+    &::after {
+        @apply w-0 mt-0.5 transition-all duration-1000;
+        content: "";
+        border-top: 2px white solid;
+      }
+
+      &:hover::after {
+        width: 105%;
+      }
+    }
+    
   }
 }
 </style>

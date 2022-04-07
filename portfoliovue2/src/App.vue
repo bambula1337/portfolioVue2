@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{'bg-gray': $route.name == 'Projects'}">
     <Header />
     <div class="main">
       <router-view />
@@ -51,5 +51,11 @@ export default {
 
 .main {
   @apply min-h-screen;
+}
+
+//For Projects Page
+
+.bg-gray{
+  background-color: rgb(190, 190, 190);
 }
 </style>

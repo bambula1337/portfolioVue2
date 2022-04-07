@@ -4,8 +4,9 @@
       <WelcomeText :main="WelcomeText.main" :sub="WelcomeText.sub" />
     </div>
     <Slider :ProjectName="Slider.ProjectName" />
-
-    <p class="view-all">View all projects</p>
+    <router-link to="projects">
+      <p class="view-all" @click="scrollTop">View all projects</p>
+    </router-link>
   </div>
 </template>
 
@@ -18,6 +19,14 @@ export default {
   components: {
     WelcomeText,
     Slider,
+  },
+  methods:{
+    scrollTop: function(){
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
   },
   data() {
     return {
@@ -57,9 +66,19 @@ export default {
   }
 
   & .view-all {
-    @apply flex justify-center text-3xl mt-5 text-center;
+    @apply justify-center text-3xl mt-5 text-center flex items-center flex-col;
     @apply lg:mt-16;
     font-family: "Train One";
+
+    &::after{
+        @apply w-0 transition-all duration-1000;
+        content: '';
+        border-top: 2px black solid;
+      }
+
+      &:hover::after{
+        @apply w-68;
+      }
   }
 }
 </style>
