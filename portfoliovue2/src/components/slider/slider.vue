@@ -2,7 +2,7 @@
   <div class="slider">
     <div class="slider_and_name">
       <p class="project-name">{{ ProjectName }}</p>
-      <div class="slider-wrapper">
+      <div class="slider-wrapper" @mouseover="intervalClear" @mouseleave="intervalSet">
         <SliderItem
           v-for="(slide, index) in slides"
           :key="index"
@@ -64,6 +64,8 @@ export default {
         this.effect = "next";
         this.clickable = false;
         setTimeout(this.clickswithcer, 700);
+        clearInterval(this.interval);
+        this.interval = setTimeout(this.next, 5000);
       }
     },
     switchTo(number) {
@@ -76,11 +78,23 @@ export default {
         this.currentSlideID = number;
         this.clickable = false;
         setTimeout(this.clickswithcer, 700);
+        clearInterval(this.interval);
+        this.interval = setTimeout(this.next, 5000);
+        
       }
     },
     clickswithcer: function () {
       this.clickable = true;
     },
+    intervalClear: function(){
+      clearInterval(this.interval);
+    },
+    intervalSet: function(){
+      this.interval = setTimeout(this.next, 5000);
+    }
+  },
+  created(){
+    this.interval = setTimeout(this.next, 5000);
   },
   data() {
     return {
@@ -93,6 +107,7 @@ export default {
       currentSlideID: 0,
       effect: "",
       clickable: true,
+      interval: null,
     };
   },
   props: ["ProjectName"],
