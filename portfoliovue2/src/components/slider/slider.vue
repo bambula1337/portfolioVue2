@@ -108,7 +108,8 @@ export default {
     @apply relative overflow-hidden flex items-end justify-center w-80 h-40;
     @apply smlger:w-108 smlger:h-56;
     @apply smplus:w-144 smplus:h-72;
-    @apply xl:w-300 xl:h-144;
+    @apply lgplus:w-240 lgplus:h-120;
+    @apply xl:w-280 xl:h-140;
     border-radius: 100px;
 
     & .project-name {

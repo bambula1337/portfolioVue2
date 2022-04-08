@@ -53,6 +53,12 @@ export default {
     background-position: 10% 200%;
     background-size: 80rem;
   }
+  @media (min-width: 1280px) {
+    background-image: url("../../assets/img/projects/bgmade1.png");
+    background-repeat: no-repeat;
+    background-position: 10% 200%;
+    background-size: 100rem;
+  }
 
   @media (min-width: 1440px) {
     background-image: url("../../assets/img/projects/bgmade1.png");

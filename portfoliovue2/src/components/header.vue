@@ -23,7 +23,8 @@
         ></span>
       </div>
       <div
-        :class="[isMobileMenuOpened ? 'menuOpened' : 'menu']"
+        class="menu"
+        :class="{'menuOpened': isMobileMenuOpened}"
         @click="scrollerClicked"
       >
         <a href="#about" v-smooth-scroll class="link" v-if="$route.name != 'Projects'">about me</a>
@@ -133,17 +134,16 @@ export default {
       }
     }
     & .menu {
-      @apply z-0 text-black flex flex-col w-screen items-center h-40 justify-center -mt-40 text-5xl transition-all duration-1000;
+      @apply z-0 text-black flex flex-col w-screen items-center h-40 justify-center text-5xl transition-all duration-1000;
       @apply md:hidden;
+      transform: translateY(-10rem);
       font-family: "Zen Tokyo Zoo";
     }
   }
 }
 
 .menuOpened {
-  @apply z-0 text-black flex flex-col w-screen items-center h-40 justify-center mt-32 text-5xl  transition-all duration-1000;
-  @apply md:hidden;
-  font-family: "Zen Tokyo Zoo";
+  transform: translateY(8rem) !important;
 }
 
 .openerContentOpened {

@@ -28,7 +28,7 @@ export default {
   }
   & .bot{
     .subtext{
-      @apply text-xl text-projectgrey;
+      @apply text-xl text-center text-projectgrey;
     }
   }
 }
