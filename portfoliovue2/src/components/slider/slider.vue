@@ -204,7 +204,8 @@ export default {
     background-color: rgba(174, 95, 255, 0.5);
     content: " ";
     position: relative;
-    border: 1.5px rgba(255, 255, 255, 0.5) solid;
+    -webkit-box-shadow: 0px 0px 10px 3px #ffffff7c;
+    box-shadow: 0px 0px 10px 3px #ffffff7c;
   }
 
   & .active {
@@ -212,7 +213,8 @@ export default {
     background-color: #ae5fff;
     content: " ";
     position: relative;
-    border: 1.5px rgba(255, 255, 255, 1) solid;
+    -webkit-box-shadow: 0px 0px 10px 3px #ffffff;
+    box-shadow: 0px 0px 10px 3px #ffffff;
   }
 }
 
