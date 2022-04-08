@@ -2,15 +2,26 @@
   <div class="slider">
     <div class="slider_and_name">
       <p class="project-name">{{ ProjectName }}</p>
-      <div class="slider-wrapper" @mouseover="intervalClear" @mouseleave="intervalSet">
-        <SliderItem
-          v-for="(slide, index) in slides"
-          :key="index"
-          :slideImgSrc="slide"
-          :currentSlideID="currentSlideID"
-          :index="index"
-          :effect="effect"
-        />
+      <div
+        class="slider-wrapper"
+        @mouseover="intervalClear"
+        @mouseleave="intervalSet"
+      >
+        <div
+          class="item-wrapper"
+          @mousedown="start"
+          @mousemove="move"
+          @mouseup="end"
+        >
+          <SliderItem
+            v-for="(slide, index) in slides"
+            :key="index"
+            :slideImgSrc="slide"
+            :currentSlideID="currentSlideID"
+            :index="index"
+            :effect="effect"
+          />
+        </div>
         <div class="sliderDots">
           <p
             v-for="(dot, index) in slides"
@@ -20,9 +31,7 @@
           ></p>
         </div>
       </div>
-      <a
-        href="https://github.com/bambula1337/CopyProIdea"
-        class="github"
+      <a href="https://github.com/bambula1337/CopyProIdea" class="github"
         ><img src="@/assets/img/slider/github_icon.png" alt=""
       /></a>
     </div>
@@ -54,6 +63,8 @@ export default {
         this.effect = "prev";
         this.clickable = false;
         setTimeout(this.clickswithcer, 700);
+        clearInterval(this.interval);
+        this.interval = setTimeout(this.next, 5000);
       }
     },
     next: function () {
@@ -80,21 +91,69 @@ export default {
         setTimeout(this.clickswithcer, 700);
         clearInterval(this.interval);
         this.interval = setTimeout(this.next, 5000);
-        
       }
     },
     clickswithcer: function () {
       this.clickable = true;
     },
-    intervalClear: function(){
+    intervalClear: function () {
       clearInterval(this.interval);
     },
-    intervalSet: function(){
+    intervalSet: function () {
       this.interval = setTimeout(this.next, 5000);
-    }
+    },
+    start: function (event) {
+      event.preventDefault();
+      this.touch.start = event.clientX;
+      this.touch.end = this.touchstart + 1;
+    },
+    move: function (event) {
+      event.preventDefault();
+      this.touch.end = event.clientX;
+    },
+    end: function () {
+      if (Math.abs(this.touch.end - this.touch.start) > 50) {
+        if (this.touch.end < this.touch.start) {
+          this.next();
+        } else {
+          this.prev();
+        }
+      }
+    },
+    touchstart: function (event) {
+      event.preventDefault();
+      this.touch.start = event.touches[0].clientX;
+      this.touch.end = this.touchstart + 1;
+    },
+    touchmove: function (event) {
+      event.preventDefault();
+      this.touch.end = event.touches[0].clientX;
+    },
+    touchend: function () {
+      console.log(this.touch);
+      if (Math.abs(this.touch.end - this.touch.start) > 50) {
+        if (this.touch.end < this.touch.start) {
+          this.next();
+        } else {
+          this.prev();
+        }
+      }
+    },
   },
-  created(){
+  created() {
     this.interval = setTimeout(this.next, 5000);
+  },
+  mounted() {
+    console.log(this.$el.querySelector(".slider-wrapper"));
+    this.$el
+      .querySelector(".item-wrapper")
+      .addEventListener("touchstart", this.touchstart);
+    this.$el
+      .querySelector(".item-wrapper")
+      .addEventListener("touchmove", this.touchmove);
+    this.$el
+      .querySelector(".item-wrapper")
+      .addEventListener("touchend", this.touchend);
   },
   data() {
     return {
@@ -108,6 +167,10 @@ export default {
       effect: "",
       clickable: true,
       interval: null,
+      touch: {
+        start: 0,
+        end: 0,
+      },
     };
   },
   props: ["ProjectName"],
@@ -164,9 +227,8 @@ export default {
     @apply flex self-center w-32;
     @apply md:mt-5;
     @media (min-width: 1024px) {
-       
-     filter: invert(95%) sepia(0%) saturate(58%) hue-rotate(4deg) brightness(120%) contrast(100%);
-      
+      filter: invert(95%) sepia(0%) saturate(58%) hue-rotate(4deg)
+        brightness(120%) contrast(100%);
     }
   }
 }
