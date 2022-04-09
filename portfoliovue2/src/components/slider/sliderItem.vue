@@ -1,7 +1,7 @@
 <template>
   <transition :name="effect">
     <div class="sliderItem" v-show="currentSlideID === index">
-      <img class="bgImg" :src="urlFixer(slideImgSrc)" alt="" />
+      <img class="bgImg" :src="urlStartingFromAssets(slideImgSrc)" alt="" />
     </div>
   </transition>
 </template>
@@ -11,7 +11,7 @@ export default {
   name: "SliderItemComponent",
   props: ["slideImgSrc", "currentSlideID", "index", "effect"],
   methods: {
-    urlFixer: function(url){
+    urlStartingFromAssets: function(url){
       return require(`@/assets${url}`);
     }
   }

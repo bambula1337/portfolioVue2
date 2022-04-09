@@ -5,7 +5,7 @@
     </div>
     <Slider :ProjectName="Slider.ProjectName" />
     <router-link to="projects">
-      <p class="view-all" @click="scrollTop">View all projects</p>
+      <p class="view-all" @click="scrollToTop">View all projects</p>
     </router-link>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
     Slider,
   },
   methods:{
-    scrollTop: function(){
+    scrollToTop: function(){
       window.scrollTo({
         top: 0,
         behavior: 'smooth',

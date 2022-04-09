@@ -25,12 +25,14 @@
       <div
         class="menu"
         :class="{'menuOpened': isMobileMenuOpened}"
-        @click="scrollerClicked"
+        @click="closeMenu"
       >
-        <a href="#about" v-smooth-scroll class="link" v-if="$route.name != 'Projects'">about me</a>
-        <a href="#projects" v-smooth-scroll class="link" v-if="$route.name != 'Projects'">projects</a>
-        <a href="#contact" v-smooth-scroll class="link" v-if="$route.name != 'Projects'">contact</a>
-        <router-link to="/" v-else><p class="link" @click="scrollerClicked">main page</p></router-link>
+        <div class="default-links" v-if="$route.name != 'Projects'">
+          <a href="#about" v-smooth-scroll class="link">about me</a>
+        <a href="#projects" v-smooth-scroll class="link">projects</a>
+        <a href="#contact" v-smooth-scroll class="link">contact</a>
+        </div>
+        <router-link to="/" v-else><p class="link" @click="closeMenu">main page</p></router-link>
       </div>
     </div>
   </div>
@@ -40,7 +42,7 @@
 export default {
   name: "HeaderComponent",
   methods: {
-    scrollerClicked: function (event) {
+    closeMenu: function (event) {
       if (event.target.className == "link") {
         this.isMobileMenuOpened = false;
       }
@@ -138,6 +140,10 @@ export default {
       @apply md:hidden;
       transform: translateY(-10rem);
       font-family: "Zen Tokyo Zoo";
+
+      & .default-links{
+        @apply flex flex-col items-center;
+      }
     }
   }
 }
@@ -179,7 +185,7 @@ export default {
   }
 }
 
-//For Projects Page
+//For Project Page
 
 .isProject {
   @apply justify-center;

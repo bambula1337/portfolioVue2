@@ -45,7 +45,7 @@ export default {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgb(110, 110, 110);
 }
-//
+
 
 //For Correct peview header with footer
 
@@ -53,7 +53,7 @@ export default {
   @apply min-h-screen;
 }
 
-//For Projects Page
+//For Project Page
 
 .bg-gray{
   background-color: rgb(190, 190, 190);

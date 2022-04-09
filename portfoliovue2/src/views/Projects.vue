@@ -3,7 +3,7 @@
     <div class="welcometext-wrapper">
       <WelcomeText :main="WelcomeText.main" :sub="WelcomeText.sub" />
     </div>
-    <Slider :ProjectName="'SKYBOX'" />
+    <Slider :ProjectName="Slider.ProjectName" />
   </div>
 </template>
 
@@ -23,6 +23,11 @@ export default {
         main: "All Projects",
         sub: "My all non-commercials projects",
       },
+      Slider: {
+        ProjectName: 'SKYBOX',
+        urls: [],
+        IntervalTime: 9000,
+      }
     };
   },
 }

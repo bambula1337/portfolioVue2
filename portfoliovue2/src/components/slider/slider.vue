@@ -9,9 +9,12 @@
       >
         <div
           class="item-wrapper"
-          @mousedown="start"
-          @mousemove="move"
+          @mousedown.prevent="start"
+          @mousemove.prevent="move"
           @mouseup="end"
+          @touchstart="start($event.touches[0])"
+          @touchmove="move($event.touches[0])"
+          @touchend="end"
         >
           <SliderItem
             v-for="(slide, index) in slides"
@@ -19,7 +22,7 @@
             :slideImgSrc="slide"
             :currentSlideID="currentSlideID"
             :index="index"
-            :effect="effect"
+            :effect="animation.name"
           />
         </div>
         <div class="sliderDots">
@@ -56,60 +59,49 @@ export default {
   },
   methods: {
     prev: function () {
-      if (this.clickable) {
+      if (this.isClickAble) {
         this.currentSlideID > 0
           ? this.currentSlideID--
           : (this.currentSlideID = this.slides.length - 1);
-        this.effect = "prev";
-        this.clickable = false;
-        setTimeout(this.clickswithcer, 700);
-        clearInterval(this.interval);
-        this.interval = setTimeout(this.next, 5000);
+        this.animation.name = "prev";
+        this.afterChangingSlide();
       }
     },
     next: function () {
-      if (this.clickable) {
+      if (this.isClickAble) {
         this.currentSlideID < this.slides.length - 1
           ? this.currentSlideID++
           : (this.currentSlideID = 0);
-        this.effect = "next";
-        this.clickable = false;
-        setTimeout(this.clickswithcer, 700);
-        clearInterval(this.interval);
-        this.interval = setTimeout(this.next, 5000);
+        this.animation.name = "next";
+        this.afterChangingSlide();
       }
     },
     switchTo(number) {
-      if (this.clickable) {
+      if (this.isClickAble) {
         if (this.currentSlideID < number) {
-          this.effect = "next";
+          this.animation.name = "next";
         } else {
-          this.effect = "prev";
+          this.animation.name = "prev";
         }
         this.currentSlideID = number;
-        this.clickable = false;
-        setTimeout(this.clickswithcer, 700);
-        clearInterval(this.interval);
-        this.interval = setTimeout(this.next, 5000);
+        this.afterChangingSlide();
       }
     },
-    clickswithcer: function () {
-      this.clickable = true;
+    isClickAbleSwitcher: function (value) {
+      this.isClickAble = value;
     },
     intervalClear: function () {
-      clearInterval(this.interval);
+      clearInterval(this.interval.parent);
     },
     intervalSet: function () {
-      this.interval = setTimeout(this.next, 5000);
+      this.interval.parent = setTimeout(this.next, this.interval.time);
     },
-    start: function (event) {
-      event.preventDefault();
-      this.touch.start = event.clientX;
-      this.touch.end = this.touchstart + 1;
+    start: function (currentTouch) {
+      this.touch.start = currentTouch.clientX;
+      this.touch.end += 1;
     },
-    move: function (event) {
-      event.preventDefault();
-      this.touch.end = event.clientX;
+    move: function (currentTouch) {
+      this.touch.end = currentTouch.clientX;
     },
     end: function () {
       if (Math.abs(this.touch.end - this.touch.start) > 50) {
@@ -120,40 +112,15 @@ export default {
         }
       }
     },
-    touchstart: function (event) {
-      event.preventDefault();
-      this.touch.start = event.touches[0].clientX;
-      this.touch.end = this.touchstart + 1;
-    },
-    touchmove: function (event) {
-      event.preventDefault();
-      this.touch.end = event.touches[0].clientX;
-    },
-    touchend: function () {
-      console.log(this.touch);
-      if (Math.abs(this.touch.end - this.touch.start) > 50) {
-        if (this.touch.end < this.touch.start) {
-          this.next();
-        } else {
-          this.prev();
-        }
-      }
+    afterChangingSlide: function () {
+      this.isClickAbleSwitcher(false);
+      setTimeout(this.isClickAbleSwitcher, this.animation.time, true);
+      clearInterval(this.interval.parent);
+      this.intervalSet();
     },
   },
   created() {
-    this.interval = setTimeout(this.next, 5000);
-  },
-  mounted() {
-    console.log(this.$el.querySelector(".slider-wrapper"));
-    this.$el
-      .querySelector(".item-wrapper")
-      .addEventListener("touchstart", this.touchstart);
-    this.$el
-      .querySelector(".item-wrapper")
-      .addEventListener("touchmove", this.touchmove);
-    this.$el
-      .querySelector(".item-wrapper")
-      .addEventListener("touchend", this.touchend);
+    this.intervalSet();
   },
   data() {
     return {
@@ -164,13 +131,19 @@ export default {
         "/img/slider/skybox/SkyboxSlider_4.png",
       ],
       currentSlideID: 0,
-      effect: "",
-      clickable: true,
-      interval: null,
+      isClickAble: true,
+      interval: {
+        parent: null,
+        time: 9000,
+      },
       touch: {
         start: 0,
         end: 0,
       },
+      animation: {
+        name: '',
+        time: 700,
+      }
     };
   },
   props: ["ProjectName"],
