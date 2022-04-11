@@ -94,7 +94,9 @@ export default {
       clearInterval(this.interval.parent);
     },
     intervalSet: function () {
-      this.interval.parent = setTimeout(this.next, this.interval.time);
+      if(this.interval.isEnable){
+        this.interval.parent = setTimeout(this.next, this.interval.time);
+      }
     },
     start: function (currentTouch) {
       this.touch.start = currentTouch.clientX;
@@ -122,19 +124,18 @@ export default {
   created() {
     this.intervalSet();
   },
+  props: ["ProjectName", "Slides", "IntervalAbility", "IntervalTime"],
   data() {
     return {
       slides: [
-        "/img/slider/skybox/SkyboxSlider_1.png",
-        "/img/slider/skybox/SkyboxSlider_2.png",
-        "/img/slider/skybox/SkyboxSlider_3.png",
-        "/img/slider/skybox/SkyboxSlider_4.png",
+        ...this.Slides
       ],
       currentSlideID: 0,
       isClickAble: true,
       interval: {
+        isEnable: this.IntervalAbility,
         parent: null,
-        time: 9000,
+        time: this.IntervalTime,
       },
       touch: {
         start: 0,
@@ -146,7 +147,6 @@ export default {
       }
     };
   },
-  props: ["ProjectName"],
 };
 </script>
 

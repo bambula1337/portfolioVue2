@@ -3,7 +3,14 @@
     <div class="welcometext-wrapper">
       <WelcomeText :main="WelcomeText.main" :sub="WelcomeText.sub" />
     </div>
-    <Slider :ProjectName="Slider.ProjectName" />
+    <Slider
+    v-for="(slider, index) in Slider"
+    :key="index"
+      :ProjectName="slider.ProjectName"
+      :Slides="slider.urls"
+      :IntervalTime="slider.IntervalTime"
+      :IntervalAbility="slider.IntervalAbility"
+    />
   </div>
 </template>
 
@@ -12,7 +19,7 @@ import WelcomeText from "@/components/welcomeText.vue";
 import Slider from "@/components/slider/slider.vue";
 
 export default {
-  name: 'Projects',
+  name: "Projects",
   components: {
     Slider,
     WelcomeText,
@@ -23,19 +30,28 @@ export default {
         main: "All Projects",
         sub: "My all non-commercials projects",
       },
-      Slider: {
-        ProjectName: 'SKYBOX',
-        urls: [],
-        IntervalTime: 9000,
-      }
+      Slider: [
+        {
+          id: 1,
+          ProjectName: "SKYBOX",
+          urls: [
+            "/img/slider/skybox/SkyboxSlider_1.png",
+            "/img/slider/skybox/SkyboxSlider_2.png",
+            "/img/slider/skybox/SkyboxSlider_3.png",
+            "/img/slider/skybox/SkyboxSlider_4.png",
+          ],
+          IntervalTime: 15000,
+          IntervalAbility: true,
+        },
+      ],
     };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.projects{
-  & .welcometext-wrapper{
+.projects {
+  & .welcometext-wrapper {
     @apply mb-10;
   }
 }

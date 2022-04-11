@@ -3,7 +3,7 @@
     <div class="WelcomeText-wrapper">
       <WelcomeText :main="WelcomeText.main" :sub="WelcomeText.sub" />
     </div>
-    <Slider :ProjectName="Slider.ProjectName" />
+    <Slider :ProjectName="Slider.ProjectName" :Slides="Slider.urls" :IntervalTime="Slider.IntervalTime" :IntervalAbility="Slider.IntervalAbility" />
     <router-link to="projects">
       <p class="view-all" @click="scrollToTop">View all projects</p>
     </router-link>
@@ -36,6 +36,14 @@ export default {
       },
       Slider: {
         ProjectName: "SKYBOX",
+        urls: [
+          "/img/slider/skybox/SkyboxSlider_1.png",
+          "/img/slider/skybox/SkyboxSlider_2.png",
+          "/img/slider/skybox/SkyboxSlider_3.png",
+          "/img/slider/skybox/SkyboxSlider_4.png",
+        ],
+        IntervalTime: 9000,
+        IntervalAbility: true,
       },
     };
   },
